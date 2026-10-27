@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18"><title>CODShield — COD Order Protection</title>
+<link rel="stylesheet" href="/styles.css">
+<script defer src="/app.js"></script>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <a class="brand" href="#"><span class="brand-mark">C</span><span>COD<span class="brand-accent">Shield</span><small>SELLER CONTROL CENTER</small></span></a>
+  <div class="workspace"><span class="workspace-dot"></span><span><b>My Store</b><small>Starter workspace</small></span><span class="chevron">⌄</span></div>
+  <div class="nav-label">WORKSPACE</div>
+  <button class="nav-item active" data-view="overview"><span>◫</span> Overview</button>
+  <button class="nav-item" data-view="orders"><span>▤</span> Orders <span class="nav-count" id="navOrders">0</span></button>
+  <button class="nav-item" data-view="followups"><span>↗</span> Follow-up queue</button>
+  <button class="nav-item" data-view="analytics"><span>▥</span> Delivery insights</button>
+  <div class="sidebar-bottom"><div class="plan-card"><span class="plan-icon">✦</span><b>Protect your profit</b><p>Track risky orders before they become costly returns.</p><button id="quickAdd" class="mini-cta">＋ Add an order</button></div><div class="profile"><div class="profile-avatar">ZA</div><span><b>Store owner</b><small>Free workspace</small></span><span class="dots">•••</span></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Overview</b></div><div class="top-actions"><span class="live-dot"></span><span class="top-status">Workspace ready</span><a class="login-link" href="/login"><span>↗</span> Sign in / Account</a><button class="icon-btn" id="signOutBtn" title="Sign out" hidden>⇥</button><div class="profile-avatar small">CS</div></div></header>
+<section class="content">
+<div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> SELLER OPERATIONS</div><h1 id="pageTitle">Good evening. <em>Let's protect your profit.</em></h1><p class="subtitle" id="pageSubtitle">A clearer view of your COD orders, confirmations, and delivery outcomes.</p></div><button class="primary-btn" id="addOrderBtn"><span>＋</span> Add new order</button></div>
+<div class="demo-banner"><span class="banner-icon">✦</span><div><b>Your command center is ready</b><p>Add your first order to start tracking confirmations and delivery risk. Sample data is clearly labelled.</p></div><button id="dismissBanner" aria-label="Dismiss">×</button></div>
+<div class="section-heading"><div><h2>Store performance</h2><p>Based on the orders recorded in CODShield</p></div><span class="period-pill"><span class="tiny-green"></span> All-time view</span></div>
+<div class="metrics-grid">
+ <article class="metric-card"><div class="metric-top"><span>Total orders</span><span class="metric-icon blue">▤</span></div><div class="metric-value" id="metricTotal">0</div><div class="metric-foot"><span class="metric-neutral">All recorded orders</span></div><div class="spark spark-blue"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+ <article class="metric-card"><div class="metric-top"><span>Awaiting confirmation</span><span class="metric-icon amber">◷</span></div><div class="metric-value" id="metricPending">0</div><div class="metric-foot"><span class="metric-warning">Needs follow-up</span></div><div class="spark spark-amber"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+ <article class="metric-card"><div class="metric-top"><span>Confirmed orders</span><span class="metric-icon green">✓</span></div><div class="metric-value" id="metricConfirmed">0</div><div class="metric-foot"><span class="metric-good">Ready to process</span></div><div class="spark spark-green"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+ <article class="metric-card"><div class="metric-top"><span>Potential COD value</span><span class="metric-icon purple">₨</span></div><div class="metric-value" id="metricValue">₨0</div><div class="metric-foot"><span class="metric-neutral">Value of tracked orders</span></div><div class="spark spark-purple"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+</div>
+<div class="main-grid">
+<section class="panel orders-panel"><div class="panel-heading"><div><h2 id="tableTitle">Recent orders</h2><p>Keep every COD order moving forward.</p></div><button class="text-btn" id="viewAll">View all <span>→</span></button></div>
+<div class="table-controls"><div class="search-box"><span>⌕</span><input id="searchInput" placeholder="Search customer or order ID..." aria-label="Search orders"></div><select id="statusFilter" aria-label="Filter order status"><option value="all">All statuses</option><option value="Pending">Pending</option><option value="Confirmed">Confirmed</option><option value="Shipped">Shipped</option><option value="Delivered">Delivered</option><option value="Cancelled">Cancelled</option></select></div>
+<div class="table-wrap"><table><thead><tr><th>ORDER / CUSTOMER</th><th>COD AMOUNT</th><th>STATUS</th><th>DATE</th><th></th></tr></thead><tbody id="ordersBody"><tr><td colspan="5" class="empty-state"><div class="empty-icon">▤</div><b>No orders yet</b><p>Add an order to start your COD workflow.</p><button class="text-btn" id="emptyAdd">＋ Create first order</button></td></tr></tbody></table></div>
+<div class="table-footer"><span id="tableCount">Showing 0 orders</span><span class="secure-note"><span>●</span> Store data workspace</span></div>
+</section>
+<aside class="right-column">
+<section class="panel queue-panel"><div class="panel-heading"><div><h2>Follow-up queue</h2><p>Orders that need attention</p></div><span class="queue-badge" id="queueBadge">0</span></div><div id="queueList" class="queue-list"><div class="queue-empty"><span>✓</span><b>You're all caught up</b><p>Pending orders will appear here.</p></div></div><button class="queue-link" data-view="followups">Open follow-up queue <span>→</span></button></section>
+<section class="insight-card"><div class="insight-orb">✧</div><div class="insight-label">CODSHIELD INSIGHT</div><h3>Every confirmed order is a step toward a smoother delivery.</h3><p>Keep confirmation status updated so your team knows what is ready to ship.</p><div class="insight-bottom"><span>ORDER HYGIENE</span><span>01 / 03</span></div><div class="insight-progress"><span></span></div></section>
+<section class="panel quick-panel"><div class="panel-heading"><div><h2>Quick actions</h2><p>Get things done faster</p></div></div><button class="quick-action" id="quickActionAdd"><span class="qa-icon">＋</span><span><b>Add an order</b><small>Record a new COD order</small></span><span class="qa-arrow">↗</span></button><button class="quick-action" id="exportBtn"><span class="qa-icon green">⇩</span><span><b>Export orders</b><small>Download a CSV report</small></span><span class="qa-arrow">↗</span></button></section>
+</aside>
+</div>
+<footer>CODShield <span>·</span> Built for sellers who want fewer surprises. <span class="footer-right">Made for COD workflows <span>✦</span></span></footer>
+</section>
+</main>
+</div>
+<div class="modal-backdrop" id="orderModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> ORDER WORKFLOW</div><h2 id="modalTitle">Add a COD order</h2><p>Record the order and track its confirmation status.</p></div><button class="modal-close" id="closeModal" aria-label="Close">×</button></div><form id="orderForm"><div class="form-grid"><label>Customer name<input name="customer_name" required maxlength="100" placeholder="e.g. Ayesha Khan"></label><label>Phone number<input name="phone" required maxlength="30" placeholder="+92 300 1234567"></label><label>Order ID <span class="optional">optional</span><input name="order_code" maxlength="60" placeholder="e.g. ORD-1042"></label><label>COD amount (PKR)<input name="amount" required type="number" min="1" max="100000000" step="1" placeholder="4500"></label><label class="full">Delivery address<input name="address" maxlength="300" placeholder="Area, city (optional)"></label><label>Order status<select name="status"><option>Pending</option><option>Confirmed</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></label><label>Follow-up date <span class="optional">optional</span><input name="follow_up_date" type="date"></label><label class="full">Internal note <span class="optional">optional</span><textarea name="notes" rows="2" maxlength="500" placeholder="Customer requested evening delivery..."></textarea></label></div><div class="form-error" id="formError" role="alert"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn" id="saveOrder"><span>＋</span> Save order</button></div></form></section></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body></html>

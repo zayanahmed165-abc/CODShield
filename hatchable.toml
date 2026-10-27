@@ -1,0 +1,7 @@
+[auth]
+enabled = true
+providers = ["email", "google"]
+
+[db.tables.cod_orders]
+read = "own"
+write = "own"
